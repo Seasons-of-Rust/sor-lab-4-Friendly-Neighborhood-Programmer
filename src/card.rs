@@ -11,7 +11,14 @@ pub struct Card {
 
 impl Card {
     pub fn fight(&self, other: &Card) -> FightResult {
-        todo!()
+        let game_state: (bool, bool) = (self.damage >= other.health, other.damage >= self.health);
+
+        match game_state {
+            (true, true) => FightResult::Tie,
+            (true, false) => FightResult::Win,
+            (false, true) => FightResult::Loss,
+            (false, false) => FightResult::Draw,
+        }
     }
 
     /// Give a play by play of the battle
